@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CHAO-AI Lab — Collaborative Hybrid Architectures for Open-ended Agentic Intelligence</title>
+<link rel="icon" type="image/png" href="Logo/LOGO-13.png">
+<link rel="shortcut icon" type="image/png" href="Logo/LOGO-13.png">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #4f46e5;
+    --primary-light: #818cf8;
+    --secondary: #06b6d4;
+    --accent: #a855f7;
+    --success: #10b981;
+    --bg: #f9fafb;
+    --bg-card: #ffffff;
+    --text: #111827;
+    --text-secondary: #6b7280;
+    --text-light: #9ca3af;
+    --border: #e5e7eb;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    --gradient-hero: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.7;
+    color: var(--text);
+    background: var(--bg);
+    overflow-x: hidden;
+  }
+
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* Navigation */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid rgba(229, 231, 235, 0.5);
+    z-index: 9999;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .nav-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--primary);
+    letter-spacing: -0.5px;
+  }
+
+  .logo-icon {
+    width: 65px;
+    height: 65px;
+    object-fit: contain;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+  }
+
+  .logo-icon:hover {
+    transform: scale(1.05);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary);
+    transition: width 0.3s ease;
+  }
+
+  .nav-links a:hover {
+    color: var(--primary);
+  }
+
+  .nav-links a:hover::after {
+    width: 100%;
+  }
+
+  .lang-switch {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    background: white;
+    padding: 6px;
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .lang-switch a {
+    padding: 8px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+
+  .lang-switch a:hover {
+    background: var(--bg);
+  }
+
+  .lang-switch a.active {
+    background: var(--primary);
+    color: white;
+  }
+
+  /* Hero Section */
+  .hero {
+    min-height: 85vh;
+    background: var(--bg);
+    padding: 140px 0 100px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-background {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .hero-gradient-1 {
+    position: absolute;
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(102, 126, 234, 0.15) 0%, transparent 70%);
+    top: -300px;
+    right: -200px;
+    border-radius: 50%;
+    filter: blur(40px);
+  }
+
+  .hero-gradient-2 {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.15) 0%, transparent 70%);
+    bottom: -200px;
+    left: -100px;
+    border-radius: 50%;
+    filter: blur(40px);
+  }
+
+  .hero-gradient-3 {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(6, 182, 212, 0.1) 0%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    filter: blur(60px);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 50px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+    box-shadow: var(--shadow-md);
+  }
+
+  .hero-badge-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--success);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+
+  h1 {
+    font-size: 72px;
+    line-height: 1.05;
+    margin-bottom: 32px;
+    letter-spacing: -2px;
+    font-weight: 900;
+    color: var(--text);
+  }
+
+  .gradient-text {
+    background: var(--gradient-hero);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+  }
+
+  .subtitle {
+    font-size: 21px;
+    color: var(--text-secondary);
+    max-width: 850px;
+    margin-bottom: 48px;
+    line-height: 1.8;
+    font-weight: 400;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 40px;
+  }
+
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 12px 20px;
+    background: white;
+    border: 1.5px solid var(--border);
+    border-radius: 50px;
+    font-size: 15px;
+    color: var(--text-secondary);
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s ease;
+    font-weight: 500;
+  }
+
+  .tag:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  /* Sections */
+  section {
+    padding: 120px 0;
+    background: var(--bg);
+  }
+
+  section:nth-child(even) {
+    background: linear-gradient(180deg, #ffffff 0%, #f9fafb 100%);
+  }
+
+  h2 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    letter-spacing: -1px;
+    color: var(--text);
+    font-weight: 800;
+  }
+
+  .section-lead {
+    font-size: 19px;
+    color: var(--text-secondary);
+    margin-bottom: 64px;
+    max-width: 850px;
+    line-height: 1.8;
+    font-weight: 400;
+  }
+
+  .section-lead strong {
+    color: var(--primary);
+    font-weight: 600;
+  }
+
+  /* About Section Layout */
+  .about-section-container {
+    display: flex;
+    align-items: center;
+    gap: 48px;
+    margin-top: 48px;
+  }
+
+  .about-text-content {
+    flex: 1;
+  }
+
+  .about-image-container {
+    flex-shrink: 0;
+    width: 320px;
+    height: 320px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    border: 2px solid var(--border);
+    order: -1;
+  }
+
+  .about-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 16px;
+  }
+
+  @media (max-width: 768px) {
+    .about-section-container {
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .about-image-container {
+      width: 220px;
+      height: 220px;
+      order: -1;
+    }
+  }
+
+  /* About Card */
+  .about-card {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .about-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-1);
+  }
+
+  .about-card p {
+    font-size: 19px;
+    line-height: 2;
+    color: var(--text);
+  }
+
+  .about-card strong {
+    color: var(--primary);
+    font-weight: 600;
+  }
+
+  /* Cards Grid */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 32px;
+    margin-top: 40px;
+  }
+
+  .card {
+    background: white;
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: var(--shadow-md);
+    border: 1.5px solid var(--border);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--gradient-1);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .card:hover {
+    box-shadow: var(--shadow-xl);
+    transform: translateY(-8px);
+    border-color: var(--primary-light);
+  }
+
+  .card:hover::before {
+    opacity: 1;
+  }
+
+  .card-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%);
+    color: var(--primary);
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    border: 1px solid rgba(102, 126, 234, 0.2);
+  }
+
+  .card h3 {
+    font-size: 22px;
+    margin-bottom: 16px;
+    color: var(--text);
+    font-weight: 700;
+    letter-spacing: -0.5px;
+  }
+
+  .card p {
+    color: var(--text-secondary);
+    line-height: 1.8;
+    font-size: 16px;
+  }
+
+  /* Core Questions - Simplified Academic Style */
+  .questions-list {
+    max-width: 800px;
+    margin: 48px 0 0;
+    list-style: none;
+    counter-reset: question-counter;
+  }
+
+  .questions-list li {
+    position: relative;
+    padding: 20px 0 20px 50px;
+    margin-bottom: 0;
+    border-bottom: 1px solid var(--border);
+    counter-increment: question-counter;
+  }
+
+  .questions-list li:last-child {
+    border-bottom: none;
+  }
+
+  .questions-list li::before {
+    content: counter(question-counter) ".";
+    position: absolute;
+    left: 0;
+    top: 20px;
+    color: var(--primary);
+    font-size: 18px;
+    font-weight: 600;
+    font-family: 'Georgia', serif;
+  }
+
+  .questions-list li h3 {
+    font-size: 17px;
+    margin-bottom: 8px;
+    color: var(--text);
+    font-weight: 600;
+    line-height: 1.5;
+  }
+
+  .questions-list li p {
+    color: var(--text-secondary);
+    line-height: 1.7;
+    font-size: 15px;
+    margin: 0;
+  }
+
+  /* Research Areas - Enhanced */
+  .research-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    margin-top: 48px;
+  }
+
+  .research-card {
+    background: white;
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border);
+    transition: all 0.4s ease;
+    position: relative;
+  }
+
+  .research-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-xl);
+    border-color: var(--primary-light);
+  }
+
+  .research-icon {
+    width: 56px;
+    height: 56px;
+    background: var(--gradient-1);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow-md);
+  }
+
+  .research-icon svg {
+    width: 28px;
+    height: 28px;
+    color: white;
+  }
+
+  .research-card h3 {
+    font-size: 20px;
+    margin-bottom: 12px;
+    color: var(--text);
+    font-weight: 700;
+  }
+
+  .research-card p {
+    color: var(--text-secondary);
+    line-height: 1.8;
+    font-size: 15px;
+  }
+
+  /* CTA Section */
+  .cta-section {
+    background: linear-gradient(135deg, var(--bg) 0%, #ffffff 100%);
+    padding: 120px 0;
+  }
+
+  .cta-box {
+    background: white;
+    border: 2px solid var(--primary);
+    border-radius: 24px;
+    padding: 64px;
+    color: var(--text);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-xl);
+  }
+
+  .cta-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-1);
+  }
+
+  .cta-box::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(168, 85, 247, 0.05) 100%);
+    pointer-events: none;
+  }
+
+  .cta-box h2 {
+    color: var(--primary);
+    margin-bottom: 32px;
+    font-size: 48px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-box p {
+    font-size: 19px;
+    max-width: 800px;
+    margin: 0 auto 40px;
+    line-height: 1.9;
+    color: var(--text-secondary);
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 36px;
+    background: var(--primary);
+    color: white;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 17px;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-button:hover {
+    transform: translateY(-4px) scale(1.05);
+    background: var(--primary-light);
+    box-shadow: var(--shadow-xl);
+  }
+
+  .cta-button svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  /* Footer */
+  footer {
+    background: linear-gradient(135deg, #1e1e2e 0%, #2d2d44 100%);
+    color: white;
+    padding: 64px 0 48px;
+    text-align: center;
+    position: relative;
+  }
+
+  footer::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.02' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  .footer-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  footer p {
+    opacity: 0.8;
+    font-size: 15px;
+    margin-bottom: 8px;
+  }
+
+  .footer-divider {
+    width: 60px;
+    height: 3px;
+    background: var(--gradient-1);
+    margin: 24px auto;
+    border-radius: 2px;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .container {
+      padding: 0 24px;
+    }
+
+    h1 {
+      font-size: 48px;
+    }
+
+    h2 {
+      font-size: 36px;
+    }
+
+    .nav-links {
+      display: none;
+    }
+
+    .hero {
+      padding: 120px 0 80px;
+      min-height: 70vh;
+    }
+
+    .subtitle {
+      font-size: 18px;
+    }
+
+    section {
+      padding: 80px 0;
+    }
+
+    .card-grid, .questions-grid, .research-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .cta-box {
+      padding: 40px 24px;
+    }
+
+    .cta-box h2 {
+      font-size: 36px;
+    }
+  }
+
+  /* Smooth Animations */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .card, .question-card, .research-card {
+    animation: fadeInUp 0.6s ease-out both;
+  }
+
+  .card:nth-child(1) { animation-delay: 0.1s; }
+  .card:nth-child(2) { animation-delay: 0.2s; }
+  .card:nth-child(3) { animation-delay: 0.3s; }
+  .question-card:nth-child(1) { animation-delay: 0.1s; }
+  .question-card:nth-child(2) { animation-delay: 0.15s; }
+  .question-card:nth-child(3) { animation-delay: 0.2s; }
+  .question-card:nth-child(4) { animation-delay: 0.25s; }
+  .question-card:nth-child(5) { animation-delay: 0.3s; }
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+  <div class="container nav-content">
+    <div class="logo">
+      <img src="Logo/LOGO-13.png" class="logo-icon" alt="CHAO-AI Lab Logo">
+      CHAO-AI Lab
+    </div>
+    <ul class="nav-links">
+      <li><a href="#about">About the Lab</a></li>
+      <li><a href="#vision">Vision</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#questions">Questions</a></li>
+      <li><a href="#join">Join Us</a></li>
+    </ul>
+    <div class="lang-switch">
+      <a href="CHAO-AI-Lab-Homepage-CN.html">中文</a>
+      <a href="CHAO-AI-Lab-Homepage-EN.html" class="active">EN</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<div class="hero">
+  <div class="hero-background">
+    <div class="hero-gradient-1"></div>
+    <div class="hero-gradient-2"></div>
+    <div class="hero-gradient-3"></div>
+  </div>
+  <div class="container hero-content">
+    <h1>Collaborative Hybrid Architectures<br>for <span class="gradient-text">Open-ended Agentic Intelligence</span></h1>
+    <p class="subtitle">
+      CHAO-AI Lab studies how large language models, intelligent agents, retrieval, NLP, and time-series analytics can be combined into collaborative hybrid architectures that support open-ended agentic intelligence in complex, real-world environments.
+    </p>
+    <div class="tags">
+      <span class="tag">LLMs</span>
+      <span class="tag">Agentic AI</span>
+      <span class="tag">Multi-Agent Systems</span>
+      <span class="tag">Retrieval / RAG</span>
+      <span class="tag">NLP</span>
+      <span class="tag">Time-Series Mining</span>
+      <span class="tag">Data Analytics</span>
+    </div>
+  </div>
+</div>
+
+<!-- About Section -->
+<section id="about">
+  <div class="container">
+    <h2>About the Lab</h2>
+    <p class="section-lead">
+      CHAO-AI Lab stands for <strong>Collaborative Hybrid Architectures for Open-ended Agentic Intelligence Lab</strong>.
+    </p>
+    <div class="about-section-container">
+      <div class="about-text-content">
+        <div class="about-card">
+          <p style="font-size: 19px; line-height: 2; color: var(--text);">
+            We believe the next generation of AI systems will not come from a single model or a single algorithm, but from the careful design of <strong>architectures</strong> in which models, tools, data, knowledge, humans, and multiple agents collaborate. Our goal is to build AI systems that can understand language, retrieve and integrate knowledge, analyze heterogeneous data, reason over long horizons, interact with humans and other agents, and act reliably on open-ended tasks.
+          </p>
+        </div>
+      </div>
+      <div class="about-image-container">
+        <img src="Logo/LOGO-13.png" alt="CHAO-AI Lab" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Vision Section -->
+<section id="vision">
+  <div class="container">
+    <h2>Research Vision</h2>
+    <p class="section-lead">
+      We organize our research around three principles that together form the name <strong>CHAO-AI</strong>.
+    </p>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-badge">C · Collaborative</div>
+        <h3>Intelligence emerges from collaboration</h3>
+        <p>Between humans and AI, between multiple agents, and between models, tools, and data systems. We design interaction protocols, communication mechanisms, and coordination strategies that make collaboration efficient, controllable, and trustworthy.</p>
+      </div>
+      <div class="card">
+        <div class="card-badge">H · Hybrid</div>
+        <h3>Heterogeneous components, coherent systems</h3>
+        <p>Real-world intelligence integrates LLMs, retrieval, structured knowledge, tools, code execution, time-series analytics, and traditional ML. We study how to combine these into architectures that exploit the strengths of each.</p>
+      </div>
+      <div class="card">
+        <div class="card-badge">AO · Architectures for Open-ended Agentic Intelligence</div>
+        <h3>Architectures for open-ended agentic intelligence</h3>
+        <p>We focus on architectures—not isolated tricks—that enable agents to plan, retrieve, analyze, decide, and act in environments where tasks are under-specified and information is incomplete.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Research Areas Section -->
+<section id="research">
+  <div class="container">
+    <h2>Research Areas</h2>
+    <p class="section-lead">
+      From foundation models to deployable agentic systems, covering the complete technology stack for agentic AI.
+    </p>
+    <div class="research-grid">
+      <div class="research-card">
+        <div class="research-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/>
+            <path d="M12 6v6l4 2"/>
+          </svg>
+        </div>
+        <h3>Large Language Models & Reasoning</h3>
+        <p>Reasoning, planning, long-context understanding, knowledge integration, and capability evaluation in complex tasks.</p>
+      </div>
+
+      <div class="research-card">
+        <div class="research-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+            <line x1="8" y1="21" x2="16" y2="21"/>
+            <line x1="12" y1="17" x2="12" y2="21"/>
+          </svg>
+        </div>
+        <h3>Agentic AI & Tool Use</h3>
+        <p>LLM-based agents with planning, memory, reflection, tool calling, code execution, browser interaction, and long-horizon task completion.</p>
+      </div>
+
+      <div class="research-card">
+        <div class="research-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </div>
+        <h3>Multi-Agent Systems & Interaction</h3>
+        <p>Communication, coordination, role specialization, debate, and cooperation among agents for research, analysis, and decision support.</p>
+      </div>
+
+      <div class="research-card">
+        <div class="research-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/>
+            <path d="m21 21-4.35-4.35"/>
+          </svg>
+        </div>
+        <h3>Retrieval-Augmented & Knowledge-Enhanced Systems</h3>
+        <p>Information retrieval, RAG, structured knowledge integration, and grounding agents in trustworthy information sources.</p>
+      </div>
+
+      <div class="research-card">
+        <div class="research-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+          </svg>
+        </div>
+        <h3>Natural Language Processing</h3>
+        <p>Language understanding, information extraction, semantic representation, and natural language interfaces for agentic systems.</p>
+      </div>
+
+      <div class="research-card">
+        <div class="research-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 3v18h18"/>
+            <path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3"/>
+          </svg>
+        </div>
+        <h3>Time-Series Mining & Data Analytics</h3>
+        <p>Modeling and analysis of temporal and multi-source data, integrated into agentic workflows for insight discovery.</p>
+      </div>
+
+      <div class="research-card">
+        <div class="research-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+        </div>
+        <h3>Human-AI Collaboration & Trustworthy Agents</h3>
+        <p>Human-in-the-loop design, controllable agents, intent alignment, and interpretable, reliable behavior in open-ended settings.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Core Questions Section -->
+<section id="questions">
+  <div class="container">
+    <h2>Core Questions</h2>
+    <p class="section-lead">
+      Key questions driving our research, exploring the future development of agentic systems.
+    </p>
+    <ul class="questions-list">
+      <li>
+        <h3>Reliable long-horizon agents</h3>
+        <p>How can LLMs become agents that act safely and reliably over long horizons in open-ended environments?</p>
+      </li>
+
+      <li>
+        <h3>Hybrid architectures</h3>
+        <p>How do we combine LLMs, retrieval, tools, knowledge, and analytics so the whole is greater than the sum of its parts?</p>
+      </li>
+
+      <li>
+        <h3>Multi-agent problem solving</h3>
+        <p>How can multiple agents communicate, coordinate, and specialize to solve problems no single agent could solve alone?</p>
+      </li>
+
+      <li>
+        <h3>Human-AI collaboration</h3>
+        <p>How can humans and AI agents collaborate in research, analysis, and decision-making while keeping humans informed and in control?</p>
+      </li>
+
+      <li>
+        <h3>Data-grounded agents</h3>
+        <p>How can agents truly understand temporal and analytical data—not just text—and turn raw data into trustworthy insights?</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- Join Section -->
+<div class="cta-section">
+  <div class="container">
+    <div class="cta-box">
+      <h2>Join Us</h2>
+      <p>
+        We are actively looking for PhD students, master's students, research interns, and visiting collaborators passionate about LLMs, agents, multi-agent systems, retrieval, NLP, and data analytics. If you enjoy thinking at the intersection of research and systems, and want to help shape agentic AI in the next few years, we'd love to hear from you.
+      </p>
+      <a class="cta-button" href="mailto:chaowang@cqnu.edu.cn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+          <polyline points="22,6 12,13 2,6"/>
+        </svg>
+        Email the Lab
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="container footer-content">
+    <p style="font-size: 18px; font-weight: 600; opacity: 0.95;">CHAO-AI Lab</p>
+    <p style="font-size: 15px; opacity: 0.7;">Collaborative Hybrid Architectures for Open-ended Agentic Intelligence</p>
+    <div class="footer-divider"></div>
+    <p style="font-size: 16px; opacity: 0.9;">Building the next generation of AI systems where models, agents, tools, data, and humans work together</p>
+    <p style="margin-top: 20px; font-size: 13px; opacity: 0.5;">© <span id="year"></span> CHAO-AI Lab · Collaborative Hybrid Architectures for Open-ended Agentic Intelligence</p>
+  </div>
+</footer>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
